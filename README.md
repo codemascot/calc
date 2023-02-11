@@ -1,36 +1,49 @@
 # calc
 
-FIXME: description
+This program will give and API name `/calc` which will act both for `GET` and `POST` request.
 
 ## Installation
 
 Download from http://example.com/FIXME.
 
 ## Usage
+`POST` request:
+```
+❯ http POST :3000/calc expression="1 * 2 * ( 3 + 4 * ( 5 - 7 ) ) * ( 4 - 9 )"
+HTTP/1.1 200 OK
+Content-Length: 13
+Content-Type: application/json;charset=utf-8
+Date: Sat, 11 Feb 2023 21:23:18 GMT
+Server: Jetty(9.4.48.v20220622)
 
-FIXME: explanation
+{
+    "result": 50
+}
+```
 
-    $ java -jar calc-0.1.0-standalone.jar [args]
+`GET` request:
+```
+❯ http GET :3000/calc expression="1 * 2 * ( 3.5 + 4 * ( 5 - 7 ) ) * ( 4 - 9.3 )"
+HTTP/1.1 200 OK
+Content-Length: 174
+Content-Type: application/json;charset=utf-8
+Date: Sat, 11 Feb 2023 21:23:04 GMT
+Server: Jetty(9.4.48.v20220622)
 
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
+{
+    "-962731914": {
+        "expression": "1 * 2 * ( 3 + 4 * ( 5 - 7 ) ) * ( 4 - 9 )",
+        "result": 50
+    },
+    "804367688": {
+        "expression": "1 * 2 * ( 3.5 + 4 * ( 5 - 7 ) ) * ( 4 - 9.3 )",
+        "result": 47.7
+    }
+}
+```
 ## License
 
-Copyright © 2023 FIXME
+Copyright © 2023 Khan Mohammad R.
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
