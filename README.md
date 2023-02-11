@@ -2,10 +2,6 @@
 
 This program will give and API name `/calc` which will act both for `GET` and `POST` request.
 
-## Installation
-
-Download from http://example.com/FIXME.
-
 ## Usage
 `POST` request:
 ```
