@@ -5,35 +5,61 @@ This program will give and API name `/calc` which will act both for `GET` and `P
 ## Usage
 `POST` request:
 ```
-❯ http POST :3000/calc expression="1 * 2 * ( 3 + 4 * ( 5 - 7 ) ) * ( 4 - 9 )"
+❯ http POST :3000/calc expression="1 * 2 * ( 3 + 4 * ( 5 - 7 ) ) * ( 4 - 9.3 )"
 HTTP/1.1 200 OK
-Content-Length: 13
+Content-Length: 28
 Content-Type: application/json;charset=utf-8
-Date: Sat, 11 Feb 2023 21:23:18 GMT
+Date: Sun, 12 Feb 2023 09:26:58 GMT
 Server: Jetty(9.4.48.v20220622)
 
 {
-    "result": 50
+    "result": 53.00000000000001
+}
+
+❯ http POST :3000/calc expression="1 * 2 * ( 3.5 + 4 * ( 5 - 7 ) ) * ( 4 - 9.3 )"
+HTTP/1.1 200 OK
+Content-Length: 15
+Content-Type: application/json;charset=utf-8
+Date: Sun, 12 Feb 2023 09:26:45 GMT
+Server: Jetty(9.4.48.v20220622)
+
+{
+    "result": 47.7
+}
+
+❯ http POST :3000/calc expression="1 * 2 * ( 3 + 4 * ( 5.07 - 7.98 ) ) * ( 4 - 9.99 )"
+HTTP/1.1 200 OK
+Content-Length: 29
+Content-Type: application/json;charset=utf-8
+Date: Sun, 12 Feb 2023 09:26:24 GMT
+Server: Jetty(9.4.48.v20220622)
+
+{
+    "result": 103.50720000000001
 }
 ```
 
 `GET` request:
 ```
-❯ http GET :3000/calc expression="1 * 2 * ( 3.5 + 4 * ( 5 - 7 ) ) * ( 4 - 9.3 )"
+❯ http GET :3000/calc
 HTTP/1.1 200 OK
-Content-Length: 174
+Content-Length: 367
 Content-Type: application/json;charset=utf-8
-Date: Sat, 11 Feb 2023 21:23:04 GMT
+Date: Sun, 12 Feb 2023 09:27:26 GMT
 Server: Jetty(9.4.48.v20220622)
 
 {
-    "-962731914": {
-        "expression": "1 * 2 * ( 3 + 4 * ( 5 - 7 ) ) * ( 4 - 9 )",
-        "result": 50
-    },
-    "804367688": {
+    "8cc933f70523a394368c614007533b7d": {
         "expression": "1 * 2 * ( 3.5 + 4 * ( 5 - 7 ) ) * ( 4 - 9.3 )",
         "result": 47.7
+    },
+    "b23b249379469fc4b4663626d19a8f2e": {
+        "expression": "1 * 2 * ( 3 + 4 * ( 5 - 7 ) ) * ( 4 - 9.3 )",
+        "result": 53.00000000000001
+    },
+    "f23421f5437563aede616be08de76dd5": {
+        "expression": "1 * 2 * ( 3 + 4 * ( 5.07 - 7.98 ) ) * ( 4 - 9.99 )",
+        "result": 103.50720000000001
     }
 }
 ```
