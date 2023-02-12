@@ -3,6 +3,9 @@
   (:require [clojure.edn :as edn]
             [clojure.string :as str]))
 
+(import 'java.security.MessageDigest
+        'java.math.BigInteger)
+
 (def ops '[- + * /])
 (def rank (zipmap ops (iterate inc 1)))
     
@@ -20,3 +23,8 @@
   (infix-to-prefix 
    (edn/read-string
     (str/replace (str "(" xs ")") #"\(|\)" {"(" "[" ")" "]"}))))
+
+(defn md5 [^String s]
+  (let [algorithm (MessageDigest/getInstance "MD5")
+        raw (.digest algorithm (.getBytes s))]
+    (format "%032x" (BigInteger. 1 raw))))

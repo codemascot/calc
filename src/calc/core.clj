@@ -13,7 +13,7 @@
 
 (defn get-result
   [exp]
-  (let [h (keyword (str (hash exp)))]
+  (let [h (keyword (str (util/md5 exp)))]
     (if (contains? @history h)
       (:result (h @history))
       (let [result (eval (util/parse exp))]
