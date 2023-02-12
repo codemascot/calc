@@ -3,7 +3,8 @@
             [reitit.ring :as r]
             [muuntaja.core :as m]
             [reitit.ring.middleware.muuntaja :as mu]
-            [calc.util :as util])
+            [calc.util :as util]
+            [calc.algo :as algo])
   (:gen-class))
 
 (def history (atom {}))
@@ -16,7 +17,7 @@
   (let [h (keyword (str (util/md5 exp)))]
     (if (contains? @history h)
       (:result (h @history))
-      (let [result (eval (util/parse exp))]
+      (let [result (eval (algo/infix-to-prefix (util/parse exp)))]
         (add-to-history h exp result)
         result))))
 
