@@ -4,10 +4,15 @@ This program will give an API name `/calc` which will act both for `GET` (histor
 
 ## Usage
 
-This project is generated with [`leiningen`](https://leiningen.org/)
+This project is generated with [`leiningen`](https://leiningen.org/) and to run it please use the below commands:
 
+1. First, install the dependencies:
 ```
-lein run -m calc.core
+$ lein deps
+```
+2. Then run it with below command:
+```
+$ lein run -m calc.core
 ```
 
 ## Example
