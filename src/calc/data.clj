@@ -5,7 +5,7 @@
 (def history (atom {}))
 
 (defn add-to-history [key exp value]
-  (swap! history update-in [key] assoc :expression exp :result value))
+  (swap! history update-in [key] assoc :expression exp :result value :timestamp (quot (System/currentTimeMillis) 1000)))
 
 (defn get-result
   [exp]
