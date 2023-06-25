@@ -7,8 +7,9 @@
         'java.math.BigInteger)
 
 (defn parse [xs]
-  (edn/read-string
-   (str/replace (str "(" xs ")") #"\(|\)" {"(" "[" ")" "]"})))
+  (try (edn/read-string
+        (str/replace (str "(" xs ")") #"\(|\)" {"(" "[" ")" "]"}))
+       (catch Exception e (Throwable->map e))))
 
 (defn md5 [^String s]
   (let [algorithm (MessageDigest/getInstance "MD5")
